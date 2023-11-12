@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://33m0iweywxqb"]
+
+[ext_resource type="PackedScene" uid="uid://o062s7rv50bw" path="res://3rd-person-player.tscn" id="1_ri6vo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_byntv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nanad"]
+size = Vector3(25, 1, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_flits"]
+size = Vector3(1, 1, 25)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_ri6vo")]
+
+[node name="the_sun" type="DirectionalLight3D" parent="."]
+light_energy = 2.828
+light_angular_distance = 18.0
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="mesh" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(25, 0, 0, 0, 1, 0, 0, 0, 25, 0, -1.53343, 0)
+mesh = SubResource("BoxMesh_byntv")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.533, 0)
+shape = SubResource("BoxShape3D_nanad")
+
+[node name="fence_PosX" type="StaticBody3D" parent="."]
+
+[node name="mesh" type="MeshInstance3D" parent="fence_PosX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 25, 13, -0.533, 0)
+mesh = SubResource("BoxMesh_byntv")
+skeleton = NodePath("../..")
+
+[node name="hitbox" type="CollisionShape3D" parent="fence_PosX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -0.533, 0)
+shape = SubResource("BoxShape3D_flits")
+
+[node name="fence_PosZ" type="StaticBody3D" parent="."]
+
+[node name="mesh" type="MeshInstance3D" parent="fence_PosZ"]
+transform = Transform3D(-4.37114e-08, 0, 25, 0, 1, 0, -1, 0, -1.09278e-06, 0, -0.533, 13)
+mesh = SubResource("BoxMesh_byntv")
+skeleton = NodePath("../..")
+
+[node name="hitbox" type="CollisionShape3D" parent="fence_PosZ"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.533, 13)
+shape = SubResource("BoxShape3D_flits")
+
+[node name="fence_NegZ" type="StaticBody3D" parent="."]
+
+[node name="mesh" type="MeshInstance3D" parent="fence_NegZ"]
+transform = Transform3D(-4.37114e-08, 0, 25, 0, 1, 0, -1, 0, -1.09278e-06, 0, -0.533, -13)
+mesh = SubResource("BoxMesh_byntv")
+skeleton = NodePath("../..")
+
+[node name="hitbox" type="CollisionShape3D" parent="fence_NegZ"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.533, -13)
+shape = SubResource("BoxShape3D_flits")
+
+[node name="fence_NegX" type="StaticBody3D" parent="."]
+
+[node name="mesh" type="MeshInstance3D" parent="fence_NegX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 25, -13, -0.533, 0)
+mesh = SubResource("BoxMesh_byntv")
+skeleton = NodePath("../..")
+
+[node name="hitbox" type="CollisionShape3D" parent="fence_NegX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -0.533, 0)
+shape = SubResource("BoxShape3D_flits")

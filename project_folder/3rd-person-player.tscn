@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://o062s7rv50bw"]
+
+[ext_resource type="Script" path="res://3rd-person-player.gd" id="1_47fu2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vlyyj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mw0ji"]
+
+[node name="main" type="CharacterBody3D"]
+script = ExtResource("1_47fu2")
+
+[node name="model" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_vlyyj")
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_mw0ji")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+editor_description = "This node is for controlling the camera so that it does not pass through walls. 
+
+It's a ray-caster that casts to where its child node is and moves if the rays collide.
+
+~Spring Length: controls how far away the child node can be at maximum
+~Margin: The closest that the child node can get from a collision object.
+~Transformed y axis position so that the camera is above the player's head
+
+In the editor, the camera is not positioned at the end of the spring arm, but the game will do that automatically when the player scene loads, so this is not a problem."
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+spring_length = 5.0
+margin = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
